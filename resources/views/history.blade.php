@@ -40,20 +40,18 @@
             rangeSelector: {
                 selected: 1
             },
-
             title: {
-                text: 'AAPL Stock Price'
+                text: 'Company history'
             },
-
             series: [{
                 type: 'candlestick',
-                name: 'AAPL Stock Price',
+                name: 'Company history',
                 data: chartData,
                 dataGrouping: {
                     units: [
                         [
-                            'week', // unit name
-                            [1] // allowed multiples
+                            'week',
+                            [1]
                         ], [
                             'month',
                             [1, 2, 3, 4, 6]

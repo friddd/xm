@@ -41,6 +41,18 @@ class CompanyRepository implements \App\Contracts\Repositories\CompanyRepository
 
         $jsonData = $response->json();
 
+        foreach ($jsonData['prices'] as $key => $value) {
+            if (
+                empty($value['open']) ||
+                empty($value['high']) ||
+                empty($value['low']) ||
+                empty($value['close']) ||
+                empty($value['volume'])
+            ) {
+                unset($jsonData['prices'][$key]);
+            }
+        }
+
         return collect($jsonData['prices']);
     }
 }
