@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <br><h2>Company history</h2><br>
-    {{ Form::open(['class' => 'history-form1']) }}
+    {{ Form::open(['class' => 'history-form']) }}
     <div class="form-group">
         {{ Form::label('company_symbol', 'Company Symbol') }}
         {{ Form::select('company_symbol', $dictionary, '', ['class' => 'form-control', 'data-validetta' => 'required,regExp[symbol]']) }}

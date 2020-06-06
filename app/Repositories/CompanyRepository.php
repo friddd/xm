@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Dtos\CompanyHistoryDto;
 use App\Models\Company;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 
 class CompanyRepository implements \App\Contracts\Repositories\CompanyRepository
 {
@@ -25,6 +26,21 @@ class CompanyRepository implements \App\Contracts\Repositories\CompanyRepository
 
     public function getHistory(CompanyHistoryDto $companyHistoryDto): Collection
     {
-        return new Collection();
+        $endpointUrl = config('app.finance_api.prefix').config('app.finance_api.url').config('app.finance_api.endpoint');
+        $response = Http::withHeaders([
+            'x-rapidapi-host' => config('app.finance_api.url'),
+            'x-rapidapi-key' => config('app.finance_api.token'),
+            'useQueryString' => true
+        ])->get($endpointUrl, [
+            'frequency' => '1d',
+            'filter' => 'history',
+            'period1' => $companyHistoryDto->getStartDate()->timestamp,
+            'period2' => $companyHistoryDto->getEndDate()->timestamp,
+            'symbol'=> $companyHistoryDto->getCompanySymbol(),
+        ]);
+
+        $jsonData = $response->json();
+
+        return collect($jsonData['prices']);
     }
 }

@@ -229,6 +229,12 @@ return [
 
     ],
 
-    'companies_url' => 'https://pkgstore.datahub.io/core/nasdaq-listings/nasdaq-listed_json/data/a5bc7580d6176d60ac0b2142ca8d7df6/nasdaq-listed_json.json'
+    'companies_url' => 'https://pkgstore.datahub.io/core/nasdaq-listings/nasdaq-listed_json/data/a5bc7580d6176d60ac0b2142ca8d7df6/nasdaq-listed_json.json',
+    'finance_api' => [
+        'prefix' => 'https://',
+        'url' => 'apidojo-yahoo-finance-v1.p.rapidapi.com',
+        'endpoint' => '/stock/v2/get-historical-data',
+        'token' => 'f6eee72431msh932732f07a85829p1e4d1djsnb786bd96f30f',
+    ],
 
 ];
