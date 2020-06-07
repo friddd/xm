@@ -26,9 +26,9 @@ class CompanyService implements \App\Contracts\Services\CompanyService
     {
         $history = $this->companyRepository->getHistory($companyHistoryDto);
 
-        $dictionary = self::getDictionary();
+        $dictionary = $this->companyRepository->getDictionary();
         $subject = $dictionary->get($companyHistoryDto->getCompanySymbol());
-        $mail = new CompanyHistoryMail($subject, $companyHistoryDto);
+        $mail = new CompanyHistoryMail($companyHistoryDto, $subject);
 
         Mail::to($companyHistoryDto->getEmail())->send($mail);
 

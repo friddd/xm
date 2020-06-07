@@ -15,7 +15,7 @@ class CompanyHistoryMail extends Mailable
     private Carbon $startDate;
     private Carbon $endDate;
 
-    public function __construct(string $subject, CompanyHistoryDto $companyHistoryDto)
+    public function __construct(CompanyHistoryDto $companyHistoryDto, ?string $subject)
     {
         $this->subject($subject);
         $this->startDate = $companyHistoryDto->getStartDate();
